@@ -1,0 +1,69 @@
+/* These are my answers to https://www.codecademy.com/practice/projects/world-populations-sql-practice-ii
+Hope this helps.*/ 
+
+--3.
+
+select count(continent)
+from countries
+where continent = 'Africa'; 
+
+
+--4.
+
+select avg(population_years.population)
+from population_years
+inner join countries 
+on population_years.country_id = countries.id
+where countries.continent = 'Oceania' 
+and population_years.year = 2005;
+
+--5.
+
+select
+avg(population_years.population), countries.name
+from population_years
+inner join countries
+on population_years.country_id 
+= countries.id
+where countries.continent ='South America'
+and population_years.year = 2003
+group by countries.name;
+
+--6.
+
+select min(population_years.population)
+as population, countries.name, population_years.year
+from population_years
+inner join countries
+on population_years.country_id=
+countries.id
+where population_years.year = 2007;
+
+--7.
+
+select avg(population_years.population)
+as 'average population', countries.name
+from population_years
+inner join countries
+on population_years.country_id=
+countries.id
+where countries.name='Poland';
+
+
+--8.
+
+select count(*)
+from countries
+where name like '%The%';
+
+
+--9.
+
+select round(sum(population_years.population),2)
+as 'Population',
+countries.continent
+from population_years
+inner join countries
+on population_years.country_id
+= countries.id
+group by countries.continent;
